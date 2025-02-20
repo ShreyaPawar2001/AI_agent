@@ -1,0 +1,318 @@
+{
+  "settings": { 
+    "languages": [
+      "en"
+    ],
+    "tag": "nlp",
+    "threshold": 0.5,
+    "autoLoad": true,
+    "autoSave": true,
+    "modelFileName": "model.nlp",
+    "executeActionsBeforeAnswers": false,
+    "calculateSentiment": true
+  },
+  "nluManager": {
+    "settings": {
+      "tag": "nlu-manager"
+    },
+    "locales": [
+      "en"
+    ],
+    "languageNames": {},
+    "domainManagers": {
+      "en": {
+        "settings": {
+          "locale": "en",
+          "trainByDomain": false,
+          "tag": "domain-manager-en",
+          "nluByDomain": {
+            "default": {
+              "className": "NeuralNlu",
+              "settings": {}
+            }
+          },
+          "useStemDict": true
+        },
+        "stemDict": {
+          "%client_name%,%year%,account,balanc,in,is,of,the,what": {
+            "intent": "finance.account_balance",
+            "domain": "default"
+          },
+          "%client_name%,%year%,account,balanc,for": {
+            "intent": "finance.account_balance",
+            "domain": "default"
+          },
+          "%client_name%,%year%,balanc,in,of": {
+            "intent": "finance.account_balance",
+            "domain": "default"
+          }
+        },
+        "intentDict": {
+          "finance.account_balance": "default"
+        },
+        "sentences": [
+          {
+            "domain": "default",
+            "utterance": "What is the account balance of %client_name% in %year%?",
+            "intent": "finance.account_balance"
+          },
+          {
+            "domain": "default",
+            "utterance": "%client_name% account balance for %year%",
+            "intent": "finance.account_balance"
+          },
+          {
+            "domain": "default",
+            "utterance": "Balance of %client_name% in %year%",
+            "intent": "finance.account_balance"
+          }
+        ],
+        "domains": {
+          "master_domain": {
+            "settings": {
+              "locale": "en",
+              "tag": "nlu-en",
+              "keepStopwords": true,
+              "nonefeatureValue": 1,
+              "nonedeltaMultiplier": 1.2,
+              "spellCheck": false,
+              "spellCheckDistance": 1,
+              "filterZeros": true,
+              "log": true
+            },
+            "features": {
+              "what": 1,
+              "is": 1,
+              "the": 1,
+              "account": 1,
+              "balanc": 1,
+              "of": 1,
+              "%client_name%": 1,
+              "in": 1,
+              "%year%": 1,
+              "for": 1
+            },
+            "intents": {
+              "finance.account_balance": 1
+            },
+            "intentFeatures": {
+              "finance.account_balance": {
+                "what": 1,
+                "is": 1,
+                "the": 1,
+                "account": 1,
+                "balanc": 1,
+                "of": 1,
+                "%client_name%": 1,
+                "in": 1,
+                "%year%": 1,
+                "for": 1
+              }
+            },
+            "featuresToIntent": {
+              "what": [
+                "finance.account_balance"
+              ],
+              "is": [
+                "finance.account_balance"
+              ],
+              "the": [
+                "finance.account_balance"
+              ],
+              "account": [
+                "finance.account_balance"
+              ],
+              "balanc": [
+                "finance.account_balance"
+              ],
+              "of": [
+                "finance.account_balance"
+              ],
+              "%client_name%": [
+                "finance.account_balance"
+              ],
+              "in": [
+                "finance.account_balance"
+              ],
+              "%year%": [
+                "finance.account_balance"
+              ],
+              "for": [
+                "finance.account_balance"
+              ]
+            },
+            "neuralNetwork": {
+              "settings": {
+                "locale": "en",
+                "tag": "nlu-en",
+                "keepStopwords": true,
+                "nonefeatureValue": 1,
+                "nonedeltaMultiplier": 1.2,
+                "spellCheck": false,
+                "spellCheckDistance": 1,
+                "filterZeros": true,
+                "log": true
+              },
+              "features": [
+                "what",
+                "is",
+                "the",
+                "account",
+                "balanc",
+                "of",
+                "%client_name%",
+                "in",
+                "%year%",
+                "for"
+              ],
+              "intents": [
+                "finance.account_balance"
+              ],
+              "perceptrons": [
+                [
+                  -0.39607205986976624,
+                  -0.39607205986976624,
+                  -0.39607205986976624,
+                  1.345240831375122,
+                  3.21268630027771,
+                  1.467771291732788,
+                  3.21268630027771,
+                  1.467771291732788,
+                  3.21268630027771,
+                  1.7483657598495483,
+                  1.6085414071371766
+                ]
+              ]
+            }
+          }
+        }
+      }
+    },
+    "intentDomains": {},
+    "extraSentences": [
+      [
+        "en",
+        "What is the account balance of %client_name% in %year%?"
+      ],
+      [
+        "en",
+        "%client_name% account balance for %year%"
+      ],
+      [
+        "en",
+        "Balance of %client_name% in %year%"
+      ]
+    ]
+  },
+  "ner": {
+    "settings": {
+      "tag": "ner",
+      "entityPreffix": "%",
+      "entitySuffix": "%"
+    },
+    "rules": {
+      "en": {
+        "client_name": {
+          "name": "client_name",
+          "type": "enum",
+          "rules": [
+            {
+              "option": "John Doe",
+              "texts": [
+                "john doe"
+              ]
+            },
+            {
+              "option": "Alice Smith",
+              "texts": [
+                "alice smith"
+              ]
+            },
+            {
+              "option": "Bob Johnson",
+              "texts": [
+                "bob johnson"
+              ]
+            },
+            {
+              "option": "Sarah Lee",
+              "texts": [
+                "sarah lee"
+              ]
+            },
+            {
+              "option": "David Green",
+              "texts": [
+                "david green"
+              ]
+            }
+          ]
+        },
+        "year": {
+          "name": "year",
+          "type": "enum",
+          "rules": [
+            {
+              "option": "2020",
+              "texts": [
+                "2020"
+              ]
+            },
+            {
+              "option": "2021",
+              "texts": [
+                "2021"
+              ]
+            },
+            {
+              "option": "2022",
+              "texts": [
+                "2022"
+              ]
+            },
+            {
+              "option": "2023",
+              "texts": [
+                "2023"
+              ]
+            },
+            {
+              "option": "2024",
+              "texts": [
+                "2024"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "nlgManager": {
+    "settings": {
+      "tag": "nlg-manager"
+    },
+    "responses": {}
+  },
+  "actionManager": {
+    "settings": {
+      "tag": "action-manager"
+    },
+    "actions": {}
+  },
+  "slotManager": {
+    "finance.account_balance": {
+      "client_name": {
+        "intent": "finance.account_balance",
+        "entity": "client_name",
+        "mandatory": false,
+        "locales": {}
+      },
+      "year": {
+        "intent": "finance.account_balance",
+        "entity": "year",
+        "mandatory": false,
+        "locales": {}
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+AI Agent Documentation:
+THis project is AI-powered query agent  that process user queries regarding Client_name and account_balance using NLP Natural Langugae Processing.The agent utilizes an LRU Least Recently Used cache for optimised performance.
+### Project Structure
+Taken reference data.json which contains client finacial details
+LRU Implementation with O(1).stores capacity of 4
+NLP manager setup used NLP with named recognition(NER),also trained NLP MOdel with few example quereies,used NLP to extract the client name and year,and stores result in LRU
+Here is we can understand more about the project structure as follow
+
+            ┌──────────────────────────┐
+            │        User input         │
+            └────────────┬──────────────┘
+                         │
+                         ▼
+            ┌──────────────────────────┐
+            │       Query handler       │
+            └────────────┬──────────────┘
+                         │
+       ┌─────────── Check cache ───────────┐
+       │                                   │
+   Cache hit?                        Cache miss?
+       │                                   │
+       ▼                                   ▼
+  ┌──────────┐                       ┌──────────┐
+  │  Return  │                       │  NLP     │
+  │  cached  │                       │ manager  │
+  │ response │                       │ extracts │
+  │          │                       │ entities │
+  └──────────┘                       └──────────┘
+                                          │
+                                          ▼
+                                 ┌─────────────────┐
+                                 │ Retrieve data   │
+                                 │ from JSON file  │
+                                 └─────────────────┘
+                                          │
+                                          ▼
+                                 ┌─────────────────┐
+                                 │  Return result  │
+                                 │ & cache It      │
+                                 └─────────────────┘
+                                          │
+                                          ▼
+                               ┌──────────────────┐
+                               │    User output   │
+                               └──────────────────┘
+
+
+###### Here are some examples of queris as follow - Ask with natural query only mention year and client_name
+What is the account balance of John Doe in 2023?
+John Doe account balance for 2023
+Balance of John Doe in 2023 
+What is the account balance in 2023?  -- if missing entitiy
+What is the account balance of John Doe in 2021?
+What is the account balance of Jane Smith in 2022?
+What is the account balance of Alice Brown in 2021?
+What is the account balance of Bob Green in 2020?
+What is the account balance of Charlie Black in 2019?
+

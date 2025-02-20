@@ -1,0 +1,9 @@
+{ 
+  "dependencies": {
+    "compromise": "^14.14.4",
+    "fs": "^0.0.1-security",
+    "lru-cache": "^11.0.2",
+    "natural": "^8.0.1",
+    "node-nlp": "^5.0.0-alpha.5"
+  }
+}
